@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eks-sample-linux-deployment #name of the Deployment   
+  namespace: eks-sample-app         #Deployment runs in the eks-sample-app namespace
+  labels:
+    app: eks-sample-linux-app
+spec:
+  replicas: 2       #Deployment will ensure that two pods are always
+  selector:
+    matchLabels:    #ensures that it selects Pods with the matching label
+      app: eks-sample-linux-app
+  template:         #Defines the template for the Pods created by this Deployment
+    metadata:
+      labels:       # Pods will have the label  
+        app: eks-sample-linux-app
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions: # ensures that the Pod runs only on nodes with
+              - key: kubernetes.io/arch
+                operator: In
+                values:
+                - amd64
+                - arm64
+      containers:
+      - name: nginx
+        image: public.ecr.aws/nginx/nginx:1.23
+        ports:
+        - name: http
+          containerPort: 80
+        imagePullPolicy: IfNotPresent
+      nodeSelector:
+        kubernetes.io/os: linux
