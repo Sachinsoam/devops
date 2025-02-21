@@ -6,7 +6,7 @@ metadata:
         tier: frontend
 spec:                       # Defines the desired state of the Pod
     containers:
-    - name: nginx-con           # name of container
+    - name: nginx          # name of container
       image: nginx:latest
       ports:
       - containerPort: 80
