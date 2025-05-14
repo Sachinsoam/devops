@@ -7,7 +7,7 @@ data:
   player_lives: "5"
   properties_file_name: "user-interface.properties"
 
-  #file-like keys
+  #file-like keys.isme har ek key ek file ki tarah behave karega e.g. base.properties will like config.php
   base.properties: |
     enemy.types=aliens,monsters
     player.maximum-lives=10
