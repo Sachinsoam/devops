@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: configmap-env-demo
+spec:
+  containers:
+    - name: configmap-demo
+      image: alpine
+      command: ["sleep", "3600"]
+      env:
+        # Define environment variables
+        - name: PLAYER_LIVES
+          valueFrom:
+            configMapKeyRef:
+              name: player-pro-demo
+              key: player_lives # The key to fetch.
+        - name: PROPERTIES_FILE_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: player-pro-demo # configMap name
+              key: properties_file_name # The key to fetch.
+        - name: SECRET_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: example-secret # secret name
+              key: username
+        - name: SECRET_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: example-secret # secret name
+              key: password
+              
