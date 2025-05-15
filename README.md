@@ -1,2 +1,0 @@
-# awsekssample
-devops
