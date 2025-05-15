@@ -1,0 +1,29 @@
+#227
+apiVersion: v1
+kind: Pod
+metadata:
+  name: liveness-probe
+spec: 
+    containers:
+      - name: liveness
+        image: k8s.gcr.io/busybox
+        args:
+          - /bin/sh
+          - '-c'   # iska mean command 
+          # niche vali command se pehle to probe pass hoga fir delete hone par fail hone lagegi
+          - touch /tmp/healthcheck; sleep 60; rm -rf /tmp/healthcheck; sleep 600
+        livenessProbe:
+          exec:
+            command:
+              - cat
+              - /tmp/healthcheck
+          initialDelaySeconds: 5 # Delay before starting the probe
+          periodSeconds: 5 # How often to perform the probe
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: liveness-probe-http
+spec:
+  containers:
+    - name: liveness-probe-http
