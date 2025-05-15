@@ -19,11 +19,3 @@ spec:
               - /tmp/healthcheck
           initialDelaySeconds: 5 # Delay before starting the probe
           periodSeconds: 5 # How often to perform the probe
----
-apiVersion: v1
-kind: Pod
-metadata:
-  name: liveness-probe-http
-spec:
-  containers:
-    - name: liveness-probe-http
