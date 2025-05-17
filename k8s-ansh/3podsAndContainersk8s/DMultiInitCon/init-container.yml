@@ -7,6 +7,7 @@ spec:
     - name: myapp-container
       image: busybox:1.28
       command: ["sh", "-c", "echo The app is running! && sleep 3600"]
+  # upar vala container tabhi chalegajab niche ke do start ho jayenge
   initContainers:
     - name: init-myservice
       image: busybox:1.28
