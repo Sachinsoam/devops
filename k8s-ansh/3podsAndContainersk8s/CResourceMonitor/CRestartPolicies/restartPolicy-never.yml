@@ -3,7 +3,7 @@ kind: Pod
 metadata:
   name: restart-never-pod
 spec:
-  restartPolicy: never
+  restartPolicy: Never  #  first letter should be capital of Never
   containers:
     - name: app
       image: alpine
