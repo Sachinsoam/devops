@@ -1,0 +1,10 @@
+#isme jo worker node ka name hoga usipar pod creat hoga
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-nodename
+spec:
+  containers:
+    - name: nginx
+      image: nginx
+  nodeName: k8sc1
